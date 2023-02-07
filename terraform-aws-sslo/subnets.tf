@@ -42,7 +42,7 @@ resource "aws_subnet" "external_az2" {
 
 ## Create dmz1 Subnets
 resource "aws_subnet" "dmz1_az1" {
-  vpc_id            = aws_vpc.securitystack.id
+  vpc_id            = aws_vpc.security_vpc.id
   cidr_block        = var.vpc_cidrs["dmz1_az1"]
   availability_zone = var.az1
   tags = {
@@ -52,7 +52,7 @@ resource "aws_subnet" "dmz1_az1" {
 }
 
 resource "aws_subnet" "dmz1_az2" {
-  vpc_id            = aws_vpc.securitystack.id
+  vpc_id            = aws_vpc.security_vpc.id
   cidr_block        = var.vpc_cidrs["dmz1_az2"]
   availability_zone = var.az2
   tags = {
