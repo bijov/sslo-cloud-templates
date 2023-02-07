@@ -62,3 +62,12 @@ output "inspection_service_ip_2" {
   value       = aws_network_interface.inspection_device_2_dmz3.private_ip
   description = "Private IP of the Inspection Service Two IP"
 }
+
+output "az1" {
+  value       = data.aws_availability_zones.available[0].names
+  description = "Availability Zone 1"
+}
+output "az2" {
+  value       = data.aws_availability_zones.available[1].names
+  description = "Availability Zone 2"
+}
