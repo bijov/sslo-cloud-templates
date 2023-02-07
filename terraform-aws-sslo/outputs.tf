@@ -1,51 +1,102 @@
-output "sslo_internal" {
-  value       = aws_network_interface.bigip_internal.private_ip
-  description = "The private IP address of SSLO internal interface."
+output "sslo_internal_az1" {
+  value       = aws_network_interface.bigip_internal_az1.private_ip
+  description = "The private IP address of az1 SSLO internal interface."
 }
 
-output "sslo_external" {
-  value       = aws_network_interface.bigip_external.private_ips
-  description = "The private IP address of SSLO external interface."
+output "sslo_internal_az2" {
+  value       = aws_network_interface.bigip_internal_az2.private_ip
+  description = "The private IP address of az2 SSLO internal interface."
 }
 
-output "sslo_dmz1" {
-  value       = aws_network_interface.bigip_dmz1.private_ips
-  description = "The private IP address of SSLO dmz1 interface."
+output "sslo_external_az1" {
+  value       = aws_network_interface.bigip_external_az1.private_ips
+  description = "The private IP address of az1 SSLO external interface."
 }
 
-output "sslo_dmz2" {
-  value       = aws_network_interface.bigip_dmz2.private_ips
-  description = "The private IP address of SSLO dmz2 interface."
+output "sslo_external_az2" {
+  value       = aws_network_interface.bigip_external_az2.private_ips
+  description = "The private IP address of az2 SSLO external interface."
 }
 
-output "sslo_dmz3" {
-  value       = aws_network_interface.bigip_dmz3.private_ips
-  description = "The private IP address of SSLO dmz3 interface."
+output "sslo_dmz1_az1" {
+  value       = aws_network_interface.bigip_dmz1_az1.private_ips
+  description = "The private IP address of az1 SSLO dmz1 interface."
 }
 
-output "sslo_dmz4" {
-  value       = aws_network_interface.bigip_dmz4.private_ips
-  description = "The private IP address of SSLO dmz4 interface."
+output "sslo_dmz1_az2" {
+  value       = aws_network_interface.bigip_dmz1_az2.private_ips
+  description = "The private IP address of az2 SSLO dmz1 interface."
 }
 
-output "sslo_management" {
-  value       = aws_network_interface.bigip_management.private_ip
-  description = "The private IP address of SSLO management interface."
+output "sslo_dmz2_az1" {
+  value       = aws_network_interface.bigip_dmz2_az1.private_ips
+  description = "The private IP address of az1 SSLO dmz2 interface."
 }
 
-output "sslo_management_public_ip" {
-  value       = aws_instance.sslo.public_ip
-  description = "The public IP address of SSLO management interface."
+output "sslo_dmz2_az2" {
+  value       = aws_network_interface.bigip_dmz2_az2.private_ips
+  description = "The private IP address of az2 SSLO dmz2 interface."
 }
 
-output "sslo_management_public_dns" {
-  value       = aws_instance.sslo.public_dns
-  description = "The public DNS of SSLO."
+output "sslo_dmz3_az1" {
+  value       = aws_network_interface.bigip_dmz3_az1.private_ips
+  description = "The private IP address of az1 SSLO dmz3 interface."
 }
 
-output "sslo_vip" {
-  value       = aws_eip.sslo_vip.public_ip
-  description = "The public IP of the VIP"
+output "sslo_dmz3_az2" {
+  value       = aws_network_interface.bigip_dmz3_az2.private_ips
+  description = "The private IP address of az2 SSLO dmz3 interface."
+}
+
+output "sslo_dmz4_az1" {
+  value       = aws_network_interface.bigip_dmz4_az1.private_ips
+  description = "The private IP address of az1 SSLO dmz4 interface."
+}
+
+output "sslo_dmz4_az2" {
+  value       = aws_network_interface.bigip_dmz4_az2.private_ips
+  description = "The private IP address of az2 SSLO dmz4 interface."
+}
+
+output "sslo_management_az1" {
+  value       = aws_network_interface.bigip_management_az1.private_ip
+  description = "The private IP address of az1 SSLO management interface."
+}
+
+output "sslo_management_az2" {
+  value       = aws_network_interface.bigip_management_az2.private_ip
+  description = "The private IP address of az2 SSLO management interface."
+}
+
+
+output "sslo_management_public_ip_az1" {
+  value       = aws_instance.sslo_az1.public_ip
+  description = "The public IP address of az1 SSLO management interface."
+}
+
+output "sslo_management_public_ip_az2" {
+  value       = aws_instance.sslo_az2.public_ip
+  description = "The public IP address of az2 SSLO management interface."
+}
+
+output "sslo_management_public_dns_az1" {
+  value       = aws_instance.sslo_az1.public_dns
+  description = "The public DNS of az1 SSLO."
+}
+
+output "sslo_management_public_dns_az2" {
+  value       = aws_instance.sslo_az2.public_dns
+  description = "The public DNS of az2 SSLO."
+}
+
+output "sslo_vip_az1" {
+  value       = aws_eip.sslo_vip_az1.public_ip
+  description = "The public IP of the az1 VIP"
+}
+
+output "sslo_vip_az2" {
+  value       = aws_eip.sslo_vip_az2.public_ip
+  description = "The public IP of the az2 VIP"
 }
 
 output "webapp_internal" {
@@ -64,10 +115,10 @@ output "inspection_service_ip_2" {
 }
 
 output "az1" {
-  value       = data.aws_availability_zones.available[0].names
+  value       = data.aws_availability_zones.available.names[0]
   description = "Availability Zone 1"
 }
 output "az2" {
-  value       = data.aws_availability_zones.available[1].names
+  value       = data.aws_availability_zones.available.names[1]
   description = "Availability Zone 2"
 }

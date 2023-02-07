@@ -1,94 +1,166 @@
-## Create Management Subnet 
-resource "aws_subnet" "management" {
-  vpc_id            = aws_vpc.securitystack.id
-  cidr_block        = var.vpc_cidrs["management"]
-  availability_zone = var.az
+## Create Management Subnets 
+resource "aws_subnet" "management_az1" {
+  vpc_id            = aws_vpc.security_vpc.id
+  cidr_block        = var.vpc_cidrs["management_az1"]
+  availability_zone = var.az1
   tags = {
-    Name       = "${var.prefix}-subnet_management"
-    Group_Name = "${var.prefix}-subnet_management"
+    Name       = "${var.prefix}-subnet_management_az1"
+    Group_Name = "${var.prefix}-subnet_management_az1"
   }
 }
 
-
-## Create External Subnet
-resource "aws_subnet" "external" {
-  vpc_id            = aws_vpc.securitystack.id
-  cidr_block        = var.vpc_cidrs["external"]
-  availability_zone = var.az
+resource "aws_subnet" "management_az2" {
+  vpc_id            = aws_vpc.security_vpc.id
+  cidr_block        = var.vpc_cidrs["management_az2"]
+  availability_zone = var.az2
   tags = {
-    Name       = "${var.prefix}-subnet_external"
-    Group_Name = "${var.prefix}-subnet_external"
+    Name       = "${var.prefix}-subnet_management_az2"
+    Group_Name = "${var.prefix}-subnet_management_az2"
   }
 }
 
-
-## Create dmz1 Subnet
-resource "aws_subnet" "dmz1" {
-  vpc_id            = aws_vpc.securitystack.id
-  cidr_block        = var.vpc_cidrs["dmz1"]
-  availability_zone = var.az
+## Create External Subnets
+resource "aws_subnet" "external_az1" {
+  vpc_id            = aws_vpc.security_vpc.id
+  cidr_block        = var.vpc_cidrs["external_az1"]
+  availability_zone = var.az1
   tags = {
-    Name       = "${var.prefix}-subnet_dmz1"
-    Group_Name = "${var.prefix}-subnet_dmz1"
+    Name       = "${var.prefix}-subnet_external_az1"
+    Group_Name = "${var.prefix}-subnet_external_az1"
   }
 }
 
-
-## Create dmz2 Subnet
-resource "aws_subnet" "dmz2" {
-  vpc_id            = aws_vpc.securitystack.id
-  cidr_block        = var.vpc_cidrs["dmz2"]
-  availability_zone = var.az
+resource "aws_subnet" "external_az2" {
+  vpc_id            = aws_vpc.security_vpc.id
+  cidr_block        = var.vpc_cidrs["external_az2"]
+  availability_zone = var.az2
   tags = {
-    Name       = "${var.prefix}-subnet_dmz2"
-    Group_Name = "${var.prefix}-subnet_dmz2"
+    Name       = "${var.prefix}-subnet_external_az2"
+    Group_Name = "${var.prefix}-subnet_external_az2"
   }
 }
 
+## Create dmz1 Subnets
+resource "aws_subnet" "dmz1_az1" {
+  vpc_id            = aws_vpc.securitystack.id
+  cidr_block        = var.vpc_cidrs["dmz1_az1"]
+  availability_zone = var.az1
+  tags = {
+    Name       = "${var.prefix}-subnet_dmz1_az1"
+    Group_Name = "${var.prefix}-subnet_dmz1_az1"
+  }
+}
+
+resource "aws_subnet" "dmz1_az2" {
+  vpc_id            = aws_vpc.securitystack.id
+  cidr_block        = var.vpc_cidrs["dmz1_az2"]
+  availability_zone = var.az2
+  tags = {
+    Name       = "${var.prefix}-subnet_dmz1_az2"
+    Group_Name = "${var.prefix}-subnet_dmz1_az2"
+  }
+}
+
+## Create dmz2 Subnets
+resource "aws_subnet" "dmz2_az1" {
+  vpc_id            = aws_vpc.security_vpc.id
+  cidr_block        = var.vpc_cidrs["dmz2_az1"]
+  availability_zone = var.az1
+  tags = {
+    Name       = "${var.prefix}-subnet_dmz2_az1"
+    Group_Name = "${var.prefix}-subnet_dmz2_az1"
+  }
+}
+
+resource "aws_subnet" "dmz2_az2" {
+  vpc_id            = aws_vpc.security_vpc.id
+  cidr_block        = var.vpc_cidrs["dmz2_az2"]
+  availability_zone = var.az2
+  tags = {
+    Name       = "${var.prefix}-subnet_dmz2_az2"
+    Group_Name = "${var.prefix}-subnet_dmz2_az2"
+  }
+}
 
 ## Create dmz3 Subnet
-resource "aws_subnet" "dmz3" {
-  vpc_id            = aws_vpc.securitystack.id
-  cidr_block        = var.vpc_cidrs["dmz3"]
-  availability_zone = var.az
+resource "aws_subnet" "dmz3_az1" {
+  vpc_id            = aws_vpc.security_vpc.id
+  cidr_block        = var.vpc_cidrs["dmz3_az1"]
+  availability_zone = var.az1
   tags = {
-    Name       = "${var.prefix}-subnet_dmz3"
-    Group_Name = "${var.prefix}-subnet_dmz3"
+    Name       = "${var.prefix}-subnet_dmz3_az1"
+    Group_Name = "${var.prefix}-subnet_dmz3_az1"
   }
 }
 
-
+resource "aws_subnet" "dmz3_az2" {
+  vpc_id            = aws_vpc.security_vpc.id
+  cidr_block        = var.vpc_cidrs["dmz3_az2"]
+  availability_zone = var.az2
+  tags = {
+    Name       = "${var.prefix}-subnet_dmz3_az2"
+    Group_Name = "${var.prefix}-subnet_dmz3_az2"
+  }
+}
 ## Create dmz4 Subnet
-resource "aws_subnet" "dmz4" {
-  vpc_id            = aws_vpc.securitystack.id
-  cidr_block        = var.vpc_cidrs["dmz4"]
-  availability_zone = var.az
+resource "aws_subnet" "dmz4_az1" {
+  vpc_id            = aws_vpc.security_vpc.id
+  cidr_block        = var.vpc_cidrs["dmz4_az1"]
+  availability_zone = var.az1
   tags = {
-    Name       = "${var.prefix}-subnet_dmz4"
-    Group_Name = "${var.prefix}-subnet_dmz4"
+    Name       = "${var.prefix}-subnet_dmz4_az1"
+    Group_Name = "${var.prefix}-subnet_dmz4_az1"
   }
 }
 
+resource "aws_subnet" "dmz4_az2" {
+  vpc_id            = aws_vpc.security_vpc.id
+  cidr_block        = var.vpc_cidrs["dmz4_az2"]
+  availability_zone = var.az2
+  tags = {
+    Name       = "${var.prefix}-subnet_dmz4_az2"
+    Group_Name = "${var.prefix}-subnet_dmz4_az2"
+  }
+}
 
 ## Create Internal Subnet
-resource "aws_subnet" "internal" {
-  vpc_id            = aws_vpc.securitystack.id
-  cidr_block        = var.vpc_cidrs["internal"]
-  availability_zone = var.az
+resource "aws_subnet" "internal_az1" {
+  vpc_id            = aws_vpc.security_vpc.id
+  cidr_block        = var.vpc_cidrs["internal_az1"]
+  availability_zone = var.az1
   tags = {
-    Name       = "${var.prefix}-subnet_internal"
-    Group_Name = "${var.prefix}-subnet_internal"
+    Name       = "${var.prefix}-subnet_internal_az1"
+    Group_Name = "${var.prefix}-subnet_internal_az1"
   }
 }
 
+resource "aws_subnet" "internal_az2" {
+  vpc_id            = aws_vpc.security_vpc.id
+  cidr_block        = var.vpc_cidrs["internal_az2"]
+  availability_zone = var.az2
+  tags = {
+    Name       = "${var.prefix}-subnet_internal_az2"
+    Group_Name = "${var.prefix}-subnet_internal_az2"
+  }
+}
 
 ## Create Application Subnet
-resource "aws_subnet" "application" {
-  vpc_id            = aws_vpc.appstack.id
-  cidr_block        = var.vpc_cidrs["application"]
-  availability_zone = var.az
+resource "aws_subnet" "application_az1" {
+  vpc_id            = aws_vpc.app_vpc.id
+  cidr_block        = var.vpc_cidrs["application_az1"]
+  availability_zone = var.az1
   tags = {
-    Name       = "${var.prefix}-subnet_application"
-    Group_Name = "${var.prefix}-subnet_application"
+    Name       = "${var.prefix}-subnet_application_az1"
+    Group_Name = "${var.prefix}-subnet_application_az1"
+  }
+}
+
+resource "aws_subnet" "application_az2" {
+  vpc_id            = aws_vpc.app_vpc.id
+  cidr_block        = var.vpc_cidrs["application_az2"]
+  availability_zone = var.az2
+  tags = {
+    Name       = "${var.prefix}-subnet_application_az2"
+    Group_Name = "${var.prefix}-subnet_application_az2"
   }
 }

@@ -18,12 +18,35 @@ variable "region" {
 #  default     = "us-east-1a"
 #}
 
-variable "ec2_key_name" {
-  description = "AWS EC2 Key name for SSH access"
+variable "az1" {
+  description = "AWS Availability Zone 1"
+  type        = string
+  default     = "us-east-1a"
+}
+
+variable "az2" {
+  description = "AWS Availability Zone 2"
+  type        = string
+  default     = "us-east-1b"
+}
+
+variable "ec2_key_name_az1" {
+  description = "AWS az1 EC2 Key name for SSH access"
   type        = string
 }
 
-variable "license_key" {
+variable "ec2_key_name_az2" {
+  description = "AWS az2 EC2 Key name for SSH access"
+  type        = string
+}
+
+
+variable "license_key_az1" {
+  description = "SSL Orchestrator license key (BYOL)"
+  type        = string
+}
+
+variable "license_key_az2" {
   description = "SSL Orchestrator license key (BYOL)"
   type        = string
 }
@@ -44,10 +67,16 @@ variable "vpc_cidrs" {
   type        = map(string)
 }
 
-variable "app_vip" {
-  description = "IP address of BIG-IP virtual server"
+variable "app_vip_az1" {
+  description = "IP address of az1 BIG-IP virtual server"
   type        = string
 }
+
+variable "app_vip_az2" {
+  description = "IP address of az2 BIG-IP virtual server"
+  type        = string
+}
+
 
 variable "instance_type" {
   description = "BIG-IP VM instance type - *.4xlarge supports up to 8 ENIs"
@@ -63,7 +92,7 @@ variable "sslo_pkg_name" {
 variable "sslo_ami" {
   description = "BIG-IP AMI - Default 16.1.0 (us-east-1)"
   type        = string
-  default     = "ami-08d7cf776e3a0e6fb"
+  default     = "ami-005468637cabaa930"
 }
 
 variable "inspection_ami" {
@@ -78,14 +107,3 @@ variable "webapp_ami" {
   default     = "ami-05343502b4149e010"
 }
 
-variable "az1" {
-  description = "AWS Availability Zone 1"
-  type        = string
-  default     = "us-east-1a"
-}
-
-variable "az2" {
-  description = "AWS Availability Zone 2"
-  type        = string
-  default     = "us-east-1b"
-}
