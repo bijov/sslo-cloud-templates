@@ -105,12 +105,12 @@ output "webapp_internal" {
 }
 
 output "inspection_service_ip_1" {
-  value       = aws_network_interface.inspection_device_1_dmz1.private_ip
+  value       = aws_network_interface.inspection_device_1_dmz1_az1.private_ip
   description = "Private IP of the Inspection Service One IP"
 }
 
 output "inspection_service_ip_2" {
-  value       = aws_network_interface.inspection_device_2_dmz3.private_ip
+  value       = aws_network_interface.inspection_device_2_dmz3_az2.private_ip
   description = "Private IP of the Inspection Service Two IP"
 }
 
