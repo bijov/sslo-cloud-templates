@@ -100,7 +100,7 @@ output "sslo_vip_az2" {
 }
 
 output "webapp_internal" {
-  value       = aws_instance.webapp-server.private_ip
+  value       = aws_instance.webapp-server-az1.private_ip
   description = "Private IP of the web app server"
 }
 
