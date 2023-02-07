@@ -12,11 +12,11 @@ variable "region" {
   default     = "us-east-1"
 }
 
-variable "az" {
-  description = "AWS Availability Zone"
-  type        = string
-  default     = "us-east-1a"
-}
+#variable "az" {
+#  description = "AWS Availability Zone"
+#  type        = string
+#  default     = "us-east-1a"
+#}
 
 variable "ec2_key_name" {
   description = "AWS EC2 Key name for SSH access"
@@ -76,4 +76,16 @@ variable "webapp_ami" {
   description = "Test web app AMI - Default: Wordpress"
   type        = string
   default     = "ami-05343502b4149e010"
+}
+
+variable "az1" {
+  description = "AWS Availability Zone 1"
+  type        = string
+  default     = "us-east-1a"
+}
+
+variable "az2" {
+  description = "AWS Availability Zone 2"
+  type        = string
+  default     = "us-east-1b"
 }
