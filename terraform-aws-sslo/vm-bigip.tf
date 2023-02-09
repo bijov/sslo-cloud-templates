@@ -153,17 +153,26 @@ resource "aws_network_interface" "bigip_dmz4_az2" {
   }
 }
 
-
-## Create Public IPs and associate to network interfaces
-resource "aws_eip" "bigip_management_az1" {
-  vpc               = true
-  public_ipv4_pool  = "amazon"
-  network_interface = aws_network_interface.bigip_management_az1.id
+## Create geneve Network Interface for BIG-IP
+resource "aws_network_interface" "bigip_geneve_az1" {
+  private_ips       = ["${cidrhost(var.vpc_cidrs["gwlbe_vpc1_az1"], 117)}", "${cidrhost(var.vpc_cidrs["gwlbe_vpc1_az1"], 116)}"]
+  subnet_id         = aws_subnet.gwlbe_vpc1_az1.id
+  source_dest_check = "false"
+  security_groups   = [aws_security_group.external.id]
   tags = {
-    Name = "${var.prefix}-eip_bigip_management_az1"
+    Name = "${var.prefix}-eni_bigip_geneve_az1"
   }
 }
 
+resource "aws_network_interface" "bigip_geneve_az2" {
+  private_ips       = ["${cidrhost(var.vpc_cidrs["gwlbe_vpc1_az2"], 117)}", "${cidrhost(var.vpc_cidrs["gwlbe_vpc1_az2"], 116)}"]
+  subnet_id         = aws_subnet.gwlbe_vpc1_az2.id
+  source_dest_check = "false"
+  security_groups   = [aws_security_group.external.id]
+  tags = {
+    Name = "${var.prefix}-eni_bigip_geneve_az2"
+  }
+}
 resource "aws_eip" "bigip_management_az2" {
   vpc               = true
   public_ipv4_pool  = "amazon"

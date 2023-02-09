@@ -43,6 +43,9 @@ resource "aws_lb_target_group_attachment" "sslo_tg_attachment" {
 resource "aws_vpc_endpoint_service" "sslo_gwlb_eps" {
   acceptance_required        = false
   gateway_load_balancer_arns = [aws_lb.sslo_gwlb.arn]
+  tags = {
+    Name  = "${var.prefix}-security_vpc_eps"
+  }
 }
 
 resource "aws_lb_listener" "sslo_gwlb_listener" {
@@ -60,6 +63,9 @@ resource "aws_vpc_endpoint" "sslo_gwlb_ep_az1" {
   subnet_ids        = [aws_subnet.gwlbe_vpc1_az1.id]
   vpc_endpoint_type = "GatewayLoadBalancer"
   vpc_id            = aws_vpc.security_vpc.id
+  tags = {
+    Name  = "${var.prefix}-ep_security_vpc_az1"
+  }
 }
 
 resource "aws_vpc_endpoint" "sslo_gwlb_ep_az2" {
@@ -68,4 +74,7 @@ resource "aws_vpc_endpoint" "sslo_gwlb_ep_az2" {
   subnet_ids        = [aws_subnet.gwlbe_vpc1_az2.id]
   vpc_endpoint_type = "GatewayLoadBalancer"
   vpc_id            = aws_vpc.security_vpc.id
+  tags = {
+    Name  = "${var.prefix}-ep_security_vpc_az2"
+  }
 }
