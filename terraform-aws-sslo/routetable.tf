@@ -1,5 +1,5 @@
 ## Create the IGW
-resource "aws_internet_gateway" "sslo" {
+resource "aws_internet_gateway" "sslo_igw" {
   vpc_id = aws_vpc.security_vpc.id
   tags = {
     Name = "${var.prefix}-igw_sslo"
@@ -12,7 +12,7 @@ resource "aws_route_table" "internet" {
   vpc_id = aws_vpc.security_vpc.id
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.sslo.id
+    gateway_id = aws_internet_gateway.sslo_igw.id
   }
 
   tags = {
