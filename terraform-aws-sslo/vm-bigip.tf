@@ -173,6 +173,17 @@ resource "aws_network_interface" "bigip_geneve_az2" {
     Name = "${var.prefix}-eni_bigip_geneve_az2"
   }
 }
+
+
+## Create Public IPs and associate to network interfaces
+resource "aws_eip" "bigip_management_az1" {
+  vpc               = true
+  public_ipv4_pool  = "amazon"
+  network_interface = aws_network_interface.bigip_management_az1.id
+  tags = {
+    Name = "${var.prefix}-eip_bigip_management_az1"
+  }
+}
 resource "aws_eip" "bigip_management_az2" {
   vpc               = true
   public_ipv4_pool  = "amazon"
