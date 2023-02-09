@@ -57,7 +57,7 @@ resource "aws_lb_listener" "sslo_gwlb_listener" {
 resource "aws_vpc_endpoint" "sslo_gwlb_ep_az1" {
   #count             = var.createGwlbEndpoint ? 1 : 0
   service_name      = aws_vpc_endpoint_service.sslo_gwlb_eps.service_name
-  subnet_ids        = aws_subnet.gwlbe_az1.id
+  subnet_ids        = [aws_subnet.gwlbe_vpc1_az1.id]
   vpc_endpoint_type = "GatewayLoadBalancer"
   vpc_id            = aws_vpc.security_vpc.id
 }
@@ -65,7 +65,7 @@ resource "aws_vpc_endpoint" "sslo_gwlb_ep_az1" {
 resource "aws_vpc_endpoint" "sslo_gwlb_ep_az2" {
   #count             = var.createGwlbEndpoint ? 1 : 0
   service_name      = aws_vpc_endpoint_service.sslo_gwlb_eps.service_name
-  subnet_ids        = aws_subnet.gwlbe_az2.id
+  subnet_ids        = [aws_subnet.gwlbe_vpc1_az2.id]
   vpc_endpoint_type = "GatewayLoadBalancer"
   vpc_id            = aws_vpc.security_vpc.id
 }
