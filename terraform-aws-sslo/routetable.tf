@@ -74,11 +74,15 @@ resource "aws_route_table_association" "application_az2" {
   route_table_id = aws_route_table.app_internet.id
 }
 
-resource "aws_route_table_association" "external_az2" {
-  subnet_id      = aws_subnet.application_az2.id
+resource "aws_route_table_association" "gwlbe_vpc2_az1" {
+  subnet_id      = aws_subnet.gwlbe_vpc2_az1.id
   route_table_id = aws_route_table.app_internet.id
 }
 
+resource "aws_route_table_association" "gwlbe_vpc2_az2" {
+  subnet_id      = aws_subnet.gwlbe_vpc2_az2.id
+  route_table_id = aws_route_table.app_internet.id
+}
 ## Create the Route Table for 'dmz1' subnet
 resource "aws_route_table" "dmz1_az1" {
   vpc_id = aws_vpc.security_vpc.id
