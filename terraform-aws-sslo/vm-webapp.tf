@@ -23,6 +23,7 @@ resource "aws_network_interface" "webapp1_az2" {
 
 resource "aws_instance" "webapp1-server-az1" {
   #depends_on        = [aws_internet_gateway.sslo]
+  depends_on        = [aws_eip.webapp1_az1, aws_route_table_association.application_az1]
   ami               = var.webapp_ami
   instance_type     = "t3.small"
   key_name          = aws_key_pair.my_keypair_az1.key_name
@@ -38,6 +39,7 @@ resource "aws_instance" "webapp1-server-az1" {
 
 resource "aws_instance" "webapp1-server-az2" {
   #depends_on        = [aws_internet_gateway.sslo]
+  depends_on        = [aws_eip.webapp1_az2, aws_route_table_association.application_az2]
   ami               = var.webapp_ami
   instance_type     = "t3.small"
   key_name          = aws_key_pair.my_keypair_az2.key_name
