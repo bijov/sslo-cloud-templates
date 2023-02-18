@@ -89,18 +89,23 @@ output "sslo_management_public_dns_az2" {
   description = "The public DNS of az2 SSLO."
 }
 
-output "sslo_vip_az1" {
-  value       = aws_eip.sslo_vip_az1.public_ip
+output "sslo_app1_az1" {
+  value       = aws_eip.webapp1_az1.public_ip
   description = "The public IP of the az1 VIP"
 }
 
-output "sslo_vip_az2" {
-  value       = aws_eip.sslo_vip_az2.public_ip
+output "sslo_app1_az2" {
+  value       = aws_eip.webapp1_az2.public_ip
   description = "The public IP of the az2 VIP"
 }
 
-output "webapp_internal" {
-  value       = aws_instance.webapp-server-az1.private_ip
+output "webapp1_internal" {
+  value       = aws_instance.webapp1-server-az1.private_ip
+  description = "Private IP of the web app server"
+}
+
+output "webapp2_internal" {
+  value       = aws_instance.webapp1-server-az2.private_ip
   description = "Private IP of the web app server"
 }
 
