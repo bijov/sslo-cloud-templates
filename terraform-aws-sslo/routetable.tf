@@ -69,6 +69,11 @@ resource "aws_route_table_association" "application_az1" {
   route_table_id = aws_route_table.app_internet.id
 }
 
+resource "aws_route_table_association" "application_az2" {
+  subnet_id      = aws_subnet.application_az2.id
+  route_table_id = aws_route_table.app_internet.id
+}
+
 resource "aws_route_table_association" "external_az2" {
   subnet_id      = aws_subnet.application_az2.id
   route_table_id = aws_route_table.app_internet.id
