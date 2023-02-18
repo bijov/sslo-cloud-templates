@@ -1,26 +1,42 @@
 ## Create the IGW
-resource "aws_internet_gateway" "sslo_igw" {
-  vpc_id = aws_vpc.security_vpc.id
+resource "aws_internet_gateway" "sslo_app_igw" {
+  vpc_id = aws_vpc.app_vpc.id
   tags = {
-    Name = "${var.prefix}-igw_sslo"
+    Name = "${var.prefix}-app_igw"
   }
 }
 
+resource "aws_internet_gateway" "sslo_security_igw" {
+  vpc_id = aws_vpc.security_vpc.id
+  tags = {
+    Name = "${var.prefix}-security_igw"
+  }
+}
 
 ## Create the Route Table for 'management' and 'external' subnets
-resource "aws_route_table" "internet" {
+resource "aws_route_table" "app_internet" {
+  vpc_id = aws_vpc.app_vpc.id
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.sslo_app_igw.id
+  }
+
+  tags = {
+    Name = "${var.prefix}-rt_app_internet"
+  }
+}
+
+resource "aws_route_table" "security_internet" {
   vpc_id = aws_vpc.security_vpc.id
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.sslo_igw.id
+    gateway_id = aws_internet_gateway.sslo_security_igw.id
   }
 
   tags = {
-    Name = "${var.prefix}-rt_internet"
+    Name = "${var.prefix}-rt_security_internet"
   }
 }
-
-
 # Create the Main SSLO Security Stack Route Table association
 #resource "aws_main_route_table_association" "main" {
 #  vpc_id         = aws_vpc.securitystack.id
@@ -30,22 +46,32 @@ resource "aws_route_table" "internet" {
 ## Create the Route Table Associations
 resource "aws_route_table_association" "management_az1" {
   subnet_id      = aws_subnet.management_az1.id
-  route_table_id = aws_route_table.internet.id
+  route_table_id = aws_route_table.security_internet.id
 }
 
 resource "aws_route_table_association" "management_az2" {
   subnet_id      = aws_subnet.management_az2.id
-  route_table_id = aws_route_table.internet.id
+  route_table_id = aws_route_table.security_internet.id
 }
 
-resource "aws_route_table_association" "external_az1" {
-  subnet_id      = aws_subnet.external_az1.id
-  route_table_id = aws_route_table.internet.id
+#resource "aws_route_table_association" "external_az1" {
+#  subnet_id      = aws_subnet.external_az1.id
+#  route_table_id = aws_route_table.internet.id
+#}
+
+#resource "aws_route_table_association" "external_az2" {
+#  subnet_id      = aws_subnet.external_az2.id
+#  route_table_id = aws_route_table.internet.id
+#}
+
+resource "aws_route_table_association" "application_az1" {
+  subnet_id      = aws_subnet.application_az1.id
+  route_table_id = aws_route_table.app_internet.id
 }
 
 resource "aws_route_table_association" "external_az2" {
-  subnet_id      = aws_subnet.external_az2.id
-  route_table_id = aws_route_table.internet.id
+  subnet_id      = aws_subnet.application_az2.id
+  route_table_id = aws_route_table.app_internet.id
 }
 
 ## Create the Route Table for 'dmz1' subnet
@@ -263,27 +289,27 @@ resource "aws_route_table_association" "internal_az2" {
 }
 
 ## Create the Route Table for 'application' subnet
-resource "aws_route_table" "application_az1" {
-  vpc_id = aws_vpc.app_vpc.id
-  route {
-    cidr_block         = "0.0.0.0/0"
-    transit_gateway_id = aws_ec2_transit_gateway.sslo.id
-  }
-  tags = {
-    Name = "${var.prefix}-rt_application_az1"
-  }
-}
+#resource "aws_route_table" "application_az1" {
+#  vpc_id = aws_vpc.app_vpc.id
+#  route {
+#    cidr_block         = "0.0.0.0/0"
+#    transit_gateway_id = aws_ec2_transit_gateway.sslo.id
+#  }
+#  tags = {
+#    Name = "${var.prefix}-rt_application_az1"
+#  }
+#}
 
-resource "aws_route_table" "application_az2" {
-  vpc_id = aws_vpc.app_vpc.id
-  route {
-    cidr_block         = "0.0.0.0/0"
-    transit_gateway_id = aws_ec2_transit_gateway.sslo.id
-  }
-  tags = {
-    Name = "${var.prefix}-rt_application_az2"
-  }
-}
+#resource "aws_route_table" "application_az2" {
+#  vpc_id = aws_vpc.app_vpc.id
+#  route {
+#    cidr_block         = "0.0.0.0/0"
+#    transit_gateway_id = aws_ec2_transit_gateway.sslo.id
+#  }
+#  tags = {
+#    Name = "${var.prefix}-rt_application_az2"
+#  }
+#}
 
 # Create the Main Route Table Association
 #resource "aws_main_route_table_association" "application" {
@@ -292,12 +318,12 @@ resource "aws_route_table" "application_az2" {
 #}
 
 ## Create the Route Table Association for 'application' subnet
-resource "aws_route_table_association" "application_az1" {
-  subnet_id      = aws_subnet.application_az1.id
-  route_table_id = aws_route_table.application_az1.id
-}
+#resource "aws_route_table_association" "application_az1" {
+#  subnet_id      = aws_subnet.application_az1.id
+#  route_table_id = aws_route_table.application_az1.id
+#}
 
-resource "aws_route_table_association" "application_az2" {
-  subnet_id      = aws_subnet.application_az2.id
-  route_table_id = aws_route_table.application_az2.id
-}
+#resource "aws_route_table_association" "application_az2" {
+#  subnet_id      = aws_subnet.application_az2.id
+#  route_table_id = aws_route_table.application_az2.id
+#}

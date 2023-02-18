@@ -193,27 +193,6 @@ resource "aws_eip" "bigip_management_az2" {
   }
 }
 
-resource "aws_eip" "sslo_vip_az1" {
-  vpc                       = true
-  public_ipv4_pool          = "amazon"
-  network_interface         = aws_network_interface.bigip_external_az1.id
-  associate_with_private_ip = var.app_vip_az1
-  tags = {
-    Name = "${var.prefix}-eip_bigip_vip_az1"
-  }
-}
-
-resource "aws_eip" "sslo_vip_az2" {
-  vpc                       = true
-  public_ipv4_pool          = "amazon"
-  network_interface         = aws_network_interface.bigip_external_az2.id
-  associate_with_private_ip = var.app_vip_az2
-  tags = {
-    Name = "${var.prefix}-eip_bigip_vip_az2"
-  }
-}
-
-
 #
 # BIG-IP
 #
@@ -278,8 +257,12 @@ resource "aws_instance" "sslo_az1" {
     network_interface_id = aws_network_interface.bigip_dmz4_az1.id
     device_index         = 6
   }
+  # set the geneve zone (geneve) interface 
+  network_interface {
+    network_interface_id = aws_network_interface.bigip_geneve_az1.id
+    device_index         = 7
+  }
 }
-
 
 ## Create BIG-IP-AZ2
 resource "aws_instance" "sslo_az2" {
