@@ -263,6 +263,7 @@ resource "aws_route_table" "internal_az1" {
   }
   route {
     cidr_block         = var.vpc_cidrs["application_az1"]
+    vpc_endpoint_id    = aws_vpc_endpoint.sslo_gwlb_ep_az1.id
     #transit_gateway_id = aws_ec2_transit_gateway.sslo.id
   }
   tags = {
@@ -278,6 +279,7 @@ resource "aws_route_table" "internal_az2" {
   }
   route {
     cidr_block         = var.vpc_cidrs["application_az2"]
+    vpc_endpoint_id    = aws_vpc_endpoint.sslo_gwlb_ep_az2.id
     #transit_gateway_id = aws_ec2_transit_gateway.sslo.id
   }
   tags = {
