@@ -175,3 +175,4 @@ Add GWLB EPs subnets in app vpc
 1 arm BIGIP architecture
 Remove internal interface from BIGIP
 Remove internal routes
+Remove Transit Gateway
