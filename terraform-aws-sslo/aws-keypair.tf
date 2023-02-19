@@ -8,7 +8,6 @@ resource "tls_private_key" "my_keypair_az2" {
   rsa_bits  = 4096
 }
 
-
 resource "aws_key_pair" "my_keypair_az1" {
   key_name   = var.ec2_key_name_az1
   public_key = tls_private_key.my_keypair_az1.public_key_openssh

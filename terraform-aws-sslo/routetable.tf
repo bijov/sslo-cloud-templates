@@ -110,7 +110,7 @@ resource "aws_route_table" "dmz1_az2" {
     network_interface_id = aws_network_interface.inspection_device_1_dmz1_az1.id
   }
   tags = {
-    Name = "${var.prefix}-rt_inspection_device_1_dmz1_az1"
+    Name = "${var.prefix}-rt_inspection_device_1_dmz1_az2"
   }
 }
 

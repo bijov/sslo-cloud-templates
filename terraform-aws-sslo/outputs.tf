@@ -10,12 +10,12 @@
 
 output "sslo_external_az1" {
   value       = aws_network_interface.bigip_external_az1.private_ips
-  description = "The private IP address of az1 SSLO external interface."
+  description = "The private IP address of az1 SSLO external interface for GENEVE tunnel endpoint."
 }
 
 output "sslo_external_az2" {
   value       = aws_network_interface.bigip_external_az2.private_ips
-  description = "The private IP address of az2 SSLO external interface."
+  description = "The private IP address of az2 SSLO external interface for GENEVE tunnel endpoint."
 }
 
 output "sslo_dmz1_az1" {
