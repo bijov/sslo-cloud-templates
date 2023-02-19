@@ -255,49 +255,49 @@ resource "aws_route_table_association" "dmz4_az2" {
 }
 
 ## Create the Route Table for 'internal' subnet
-resource "aws_route_table" "internal_az1" {
-  vpc_id = aws_vpc.security_vpc.id
-  route {
-    cidr_block           = "0.0.0.0/0"
-    network_interface_id = aws_network_interface.bigip_internal_az1.id
-  }
-  route {
-    cidr_block         = var.vpc_cidrs["application_az1"]
-    vpc_endpoint_id    = aws_vpc_endpoint.sslo_gwlb_ep_az1.id
-    #transit_gateway_id = aws_ec2_transit_gateway.sslo.id
-  }
-  tags = {
-    Name = "${var.prefix}-rt_internal_az1"
-  }
-}
+#resource "aws_route_table" "internal_az1" {
+#  vpc_id = aws_vpc.security_vpc.id
+#  route {
+#    cidr_block           = "0.0.0.0/0"
+#    network_interface_id = aws_network_interface.bigip_internal_az1.id
+#  }
+#  route {
+#    cidr_block         = var.vpc_cidrs["application_az1"]
+#    vpc_endpoint_id    = aws_vpc_endpoint.sslo_gwlb_ep_az1.id
+#    transit_gateway_id = aws_ec2_transit_gateway.sslo.id
+#  }
+#  tags = {
+#    Name = "${var.prefix}-rt_internal_az1"
+#  }
+#}
 
-resource "aws_route_table" "internal_az2" {
-  vpc_id = aws_vpc.security_vpc.id
-  route {
-    cidr_block           = "0.0.0.0/0"
-    network_interface_id = aws_network_interface.bigip_internal_az2.id
-  }
-  route {
-    cidr_block         = var.vpc_cidrs["application_az2"]
-    vpc_endpoint_id    = aws_vpc_endpoint.sslo_gwlb_ep_az2.id
-    #transit_gateway_id = aws_ec2_transit_gateway.sslo.id
-  }
-  tags = {
-    Name = "${var.prefix}-rt_internal_az2"
-  }
-}
+#resource "aws_route_table" "internal_az2" {
+#  vpc_id = aws_vpc.security_vpc.id
+#  route {
+#    cidr_block           = "0.0.0.0/0"
+#    network_interface_id = aws_network_interface.bigip_internal_az2.id
+#  }
+#  route {
+#    cidr_block         = var.vpc_cidrs["application_az2"]
+#    vpc_endpoint_id    = aws_vpc_endpoint.sslo_gwlb_ep_az2.id
+#    #transit_gateway_id = aws_ec2_transit_gateway.sslo.id
+#  }
+#  tags = {
+#    Name = "${var.prefix}-rt_internal_az2"
+#  }
+#}
 
 
 ## Create the Route Table Association
-resource "aws_route_table_association" "internal_az1" {
-  subnet_id      = aws_subnet.internal_az1.id
-  route_table_id = aws_route_table.internal_az1.id
-}
+#resource "aws_route_table_association" "internal_az1" {
+#  subnet_id      = aws_subnet.internal_az1.id
+#  route_table_id = aws_route_table.internal_az1.id
+#}
 
-resource "aws_route_table_association" "internal_az2" {
-  subnet_id      = aws_subnet.internal_az2.id
-  route_table_id = aws_route_table.internal_az2.id
-}
+#resource "aws_route_table_association" "internal_az2" {
+#  subnet_id      = aws_subnet.internal_az2.id
+#  route_table_id = aws_route_table.internal_az2.id
+#}
 
 ## Create the Route Table for 'application' subnet
 #resource "aws_route_table" "application_az1" {

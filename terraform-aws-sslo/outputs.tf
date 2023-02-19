@@ -1,12 +1,12 @@
-output "sslo_internal_az1" {
-  value       = aws_network_interface.bigip_internal_az1.private_ip
-  description = "The private IP address of az1 SSLO internal interface."
-}
+#output "sslo_internal_az1" {
+#  value       = aws_network_interface.bigip_internal_az1.private_ip
+#  description = "The private IP address of az1 SSLO internal interface."
+#}
 
-output "sslo_internal_az2" {
-  value       = aws_network_interface.bigip_internal_az2.private_ip
-  description = "The private IP address of az2 SSLO internal interface."
-}
+#output "sslo_internal_az2" {
+#  value       = aws_network_interface.bigip_internal_az2.private_ip
+#  description = "The private IP address of az2 SSLO internal interface."
+#}
 
 output "sslo_external_az1" {
   value       = aws_network_interface.bigip_external_az1.private_ips
