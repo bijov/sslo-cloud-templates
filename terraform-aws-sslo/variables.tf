@@ -67,15 +67,15 @@ variable "vpc_cidrs" {
   type        = map(string)
 }
 
-variable "app_vip_az1" {
-  description = "IP address of az1 BIG-IP virtual server"
-  type        = string
-}
+#variable "app_vip_az1" {
+#  description = "IP address of az1 BIG-IP virtual server"
+#  type        = string
+#}
 
-variable "app_vip_az2" {
-  description = "IP address of az2 BIG-IP virtual server"
-  type        = string
-}
+#variable "app_vip_az2" {
+#  description = "IP address of az2 BIG-IP virtual server"
+#  type        = string
+#}
 
 
 variable "instance_type" {
