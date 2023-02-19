@@ -28,7 +28,8 @@ resource "aws_network_interface" "bigip_management_az2" {
 
 ## Create External Network Interface for BIG-IP 
 resource "aws_network_interface" "bigip_external_az1" {
-  private_ips       = ["${cidrhost(var.vpc_cidrs["external_az1"], 11)}", "${var.app_vip_az1}"]
+  #private_ips       = ["${cidrhost(var.vpc_cidrs["external_az1"], 11)}", "${var.app_vip_az1}"]
+  private_ips       = ["${cidrhost(var.vpc_cidrs["external_az1"], 11)}"]
   subnet_id         = aws_subnet.external_az1.id
   source_dest_check = "false"
   security_groups   = [aws_security_group.external.id]
@@ -38,7 +39,8 @@ resource "aws_network_interface" "bigip_external_az1" {
 }
 
 resource "aws_network_interface" "bigip_external_az2" {
-  private_ips       = ["${cidrhost(var.vpc_cidrs["external_az2"], 11)}", "${var.app_vip_az2}"]
+  #private_ips       = ["${cidrhost(var.vpc_cidrs["external_az2"], 11)}", "${var.app_vip_az2}"]
+  private_ips       = ["${cidrhost(var.vpc_cidrs["external_az2"], 11)}"]
   subnet_id         = aws_subnet.external_az2.id
   source_dest_check = "false"
   security_groups   = [aws_security_group.external.id]
@@ -291,7 +293,7 @@ resource "aws_instance" "sslo_az2" {
   #  network_interface_id = aws_network_interface.bigip_internal_az2.id
   #  device_index         = 2
   #}
-  
+
   # set the inspection zone (dmz1) interface 
   network_interface {
     network_interface_id = aws_network_interface.bigip_dmz1_az2.id

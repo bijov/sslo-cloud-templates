@@ -1,3 +1,4 @@
+#Define a local variable with 2 values to add 2 BIGIP instances from AZ 1 & 2 in the target group
 locals {
   bigip = {
     "bigip_sslo_az1" = "${aws_instance.sslo_az1.id}",
@@ -33,7 +34,6 @@ resource "aws_lb_target_group" "sslo_tg" {
 }
 
 resource "aws_lb_target_group_attachment" "sslo_tg_attachment" {
-  #count            = 2
   for_each         = local.bigip
   target_group_arn = aws_lb_target_group.sslo_tg.arn
   target_id        = each.value
