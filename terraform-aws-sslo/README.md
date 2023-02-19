@@ -164,3 +164,14 @@ If the config fails, you should check where traffic is stopping.  A good place t
           sudo ip route add 10.0.2.0/24 via 10.0.4.129
           sudo sysctl -w net.ipv4.ip_forward=1
           ```
+
+Changes done
+
+Create AZ 2
+Create BIGIP 2
+Create web server 2
+Create IGW for app vpc
+Add GWLB EPs subnets in app vpc
+1 arm BIGIP architecture
+Remove internal interface from BIGIP
+Remove internal routes

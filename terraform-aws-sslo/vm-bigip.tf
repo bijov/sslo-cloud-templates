@@ -49,25 +49,25 @@ resource "aws_network_interface" "bigip_external_az2" {
 
 
 ## Create Internal Network Interface for BIG-IP
-resource "aws_network_interface" "bigip_internal_az1" {
-  private_ips       = ["${cidrhost(var.vpc_cidrs["internal_az1"], 11)}"]
-  subnet_id         = aws_subnet.internal_az1.id
-  source_dest_check = "false"
-  security_groups   = [aws_security_group.internal.id]
-  tags = {
-    Name = "${var.prefix}-eni_bigip_internal_az1"
-  }
-}
+#resource "aws_network_interface" "bigip_internal_az1" {
+#  private_ips       = ["${cidrhost(var.vpc_cidrs["internal_az1"], 11)}"]
+#  subnet_id         = aws_subnet.internal_az1.id
+#  source_dest_check = "false"
+#  security_groups   = [aws_security_group.internal.id]
+#  tags = {
+#    Name = "${var.prefix}-eni_bigip_internal_az1"
+#  }
+#}
 
-resource "aws_network_interface" "bigip_internal_az2" {
-  private_ips       = ["${cidrhost(var.vpc_cidrs["internal_az2"], 11)}"]
-  subnet_id         = aws_subnet.internal_az2.id
-  source_dest_check = "false"
-  security_groups   = [aws_security_group.internal.id]
-  tags = {
-    Name = "${var.prefix}-eni_bigip_internal_az2"
-  }
-}
+#resource "aws_network_interface" "bigip_internal_az2" {
+#  private_ips       = ["${cidrhost(var.vpc_cidrs["internal_az2"], 11)}"]
+#  subnet_id         = aws_subnet.internal_az2.id
+#  source_dest_check = "false"
+#  security_groups   = [aws_security_group.internal.id]
+#  tags = {
+#    Name = "${var.prefix}-eni_bigip_internal_az2"
+#  }
+#}
 
 ## Create dmz1 Network Interface for BIG-IP
 resource "aws_network_interface" "bigip_dmz1_az1" {
@@ -233,10 +233,11 @@ resource "aws_instance" "sslo_az1" {
     device_index         = 1
   }
   # set the internal interface 
-  network_interface {
-    network_interface_id = aws_network_interface.bigip_internal_az1.id
-    device_index         = 2
-  }
+  #network_interface {
+  #  network_interface_id = aws_network_interface.bigip_internal_az1.id
+  #  device_index         = 2
+  #}
+
   # set the inspection zone (dmz1) interface 
   network_interface {
     network_interface_id = aws_network_interface.bigip_dmz1_az1.id
@@ -286,10 +287,11 @@ resource "aws_instance" "sslo_az2" {
     device_index         = 1
   }
   # set the internal interface 
-  network_interface {
-    network_interface_id = aws_network_interface.bigip_internal_az2.id
-    device_index         = 2
-  }
+  #network_interface {
+  #  network_interface_id = aws_network_interface.bigip_internal_az2.id
+  #  device_index         = 2
+  #}
+  
   # set the inspection zone (dmz1) interface 
   network_interface {
     network_interface_id = aws_network_interface.bigip_dmz1_az2.id
