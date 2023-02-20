@@ -315,3 +315,9 @@ resource "aws_instance" "sslo_az2" {
     device_index         = 6
   }
 }
+  # set the geneve zone (geneve) interface 
+  network_interface {
+    network_interface_id = aws_network_interface.bigip_geneve_az2.id
+    device_index         = 7
+  }
+}
