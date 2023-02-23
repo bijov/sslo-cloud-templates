@@ -155,28 +155,6 @@ resource "aws_network_interface" "bigip_dmz4_az2" {
   }
 }
 
-## Create geneve Network Interface for BIG-IP
-resource "aws_network_interface" "bigip_geneve_az1" {
-  private_ips       = ["${cidrhost(var.vpc_cidrs["gwlbe_vpc1_az1"], 117)}", "${cidrhost(var.vpc_cidrs["gwlbe_vpc1_az1"], 116)}"]
-  subnet_id         = aws_subnet.gwlbe_vpc1_az1.id
-  source_dest_check = "false"
-  security_groups   = [aws_security_group.external.id]
-  tags = {
-    Name = "${var.prefix}-eni_bigip_geneve_az1"
-  }
-}
-
-resource "aws_network_interface" "bigip_geneve_az2" {
-  private_ips       = ["${cidrhost(var.vpc_cidrs["gwlbe_vpc1_az2"], 117)}", "${cidrhost(var.vpc_cidrs["gwlbe_vpc1_az2"], 116)}"]
-  subnet_id         = aws_subnet.gwlbe_vpc1_az2.id
-  source_dest_check = "false"
-  security_groups   = [aws_security_group.external.id]
-  tags = {
-    Name = "${var.prefix}-eni_bigip_geneve_az2"
-  }
-}
-
-
 ## Create Public IPs and associate to network interfaces
 resource "aws_eip" "bigip_management_az1" {
   vpc               = true
@@ -260,11 +238,6 @@ resource "aws_instance" "sslo_az1" {
     network_interface_id = aws_network_interface.bigip_dmz4_az1.id
     device_index         = 6
   }
-  # set the geneve zone (geneve) interface 
-  network_interface {
-    network_interface_id = aws_network_interface.bigip_geneve_az1.id
-    device_index         = 7
-  }
 }
 
 ## Create BIG-IP-AZ2
@@ -314,10 +287,4 @@ resource "aws_instance" "sslo_az2" {
     network_interface_id = aws_network_interface.bigip_dmz4_az2.id
     device_index         = 6
   }
-
-  # set the geneve zone (geneve) interface 
-  network_interface {
-    network_interface_id = aws_network_interface.bigip_geneve_az2.id
-    device_index         = 7
-}
 }

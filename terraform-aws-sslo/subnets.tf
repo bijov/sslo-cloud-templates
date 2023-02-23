@@ -42,26 +42,6 @@ resource "aws_subnet" "external_az2" {
 
 ##Create GWLB Endpoint Subnets
 
-resource "aws_subnet" "gwlbe_vpc1_az1" {
-  vpc_id            = aws_vpc.security_vpc.id
-  cidr_block        = var.vpc_cidrs["gwlbe_vpc1_az1"]
-  availability_zone = var.az1
-  tags = {
-    Name       = "${var.prefix}-subnet_gwlbe_vpc1_az1"
-    Group_Name = "${var.prefix}-subnet_gwlbe_vpc1_az1"
-  }
-}
-
-resource "aws_subnet" "gwlbe_vpc1_az2" {
-  vpc_id            = aws_vpc.security_vpc.id
-  cidr_block        = var.vpc_cidrs["gwlbe_vpc1_az2"]
-  availability_zone = var.az1
-  tags = {
-    Name       = "${var.prefix}-subnet_gwlbe_vpc1_az2"
-    Group_Name = "${var.prefix}-subnet_gwlbe_vpc1_az2"
-  }
-}
-
 resource "aws_subnet" "gwlbe_vpc2_az1" {
   vpc_id            = aws_vpc.app_vpc.id
   cidr_block        = var.vpc_cidrs["gwlbe_vpc2_az1"]
@@ -75,7 +55,7 @@ resource "aws_subnet" "gwlbe_vpc2_az1" {
 resource "aws_subnet" "gwlbe_vpc2_az2" {
   vpc_id            = aws_vpc.app_vpc.id
   cidr_block        = var.vpc_cidrs["gwlbe_vpc2_az2"]
-  availability_zone = var.az1
+  availability_zone = var.az2
   tags = {
     Name       = "${var.prefix}-subnet_gwlbe_vpc2_az2"
     Group_Name = "${var.prefix}-subnet_gwlbe_vpc2_az2"
