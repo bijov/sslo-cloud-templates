@@ -1,8 +1,8 @@
 #Define a local variable with 2 values to add 2 BIGIP instances from AZ 1 & 2 in the target group
 locals {
   bigip = {
-    "bigip_sslo_az1" = "aws_network_interface.bigip_external_az1.private_ips",
-    "bigip_sslo_az2" = "aws_network_interface.bigip_external_az2.private_ips"
+    "bigip_sslo_az1" = "${cidrhost(var.vpc_cidrs["external_az1"], 11)}"
+    "bigip_sslo_az2" = "${cidrhost(var.vpc_cidrs["external_az2"], 11)}"
   }
 }
 
