@@ -1,8 +1,8 @@
 #Define a local variable with 2 values to add 2 BIGIP instances from AZ 1 & 2 in the target group
 locals {
   bigip = {
-    "bigip_sslo_az1" = "${aws_instance.sslo_az1.id}",
-    "bigip_sslo_az2" = "${aws_instance.sslo_az2.id}"
+    "bigip_sslo_az1" = "aws_network_interface.bigip_external_az1.private_ips",
+    "bigip_sslo_az2" = "aws_network_interface.bigip_external_az2.private_ips"
   }
 }
 
@@ -11,22 +11,14 @@ locals {
 resource "aws_lb" "sslo_gwlb" {
   internal           = false
   load_balancer_type = "gateway"
-  #subnets            = [aws_subnet.external_az1.id, aws_subnet.external_az2.id]
-  subnet_mapping {
-    subnet_id            = aws_subnet.external_az1.id
-    private_ipv4_address = aws_network_interface.bigip_external_az1.private_ips.id
-  }
-
-  subnet_mapping {
-    subnet_id            = aws_subnet.external_az2.id
-    private_ipv4_address = aws_network_interface.bigip_external_az2.private_ips.id
+  subnets            = [aws_subnet.external_az1.id, aws_subnet.external_az2.id]
 
   tags = {
     Name  = "${var.prefix}-gwlb"
     #Owner = var.resourceOwner
   }
 }
-}
+
 resource "aws_lb_target_group" "sslo_tg" {
   name        = "${var.prefix}-tg"
   port        = 6081
