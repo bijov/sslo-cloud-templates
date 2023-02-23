@@ -11,19 +11,27 @@ locals {
 resource "aws_lb" "sslo_gwlb" {
   internal           = false
   load_balancer_type = "gateway"
-  subnets            = [aws_subnet.external_az1.id, aws_subnet.external_az2.id]
+  #subnets            = [aws_subnet.external_az1.id, aws_subnet.external_az2.id]
+  subnet_mapping {
+    subnet_id            = aws_subnet.external_az1.id
+    private_ipv4_address = aws_network_interface.bigip_external_az1.private_ips.id
+  }
+
+  subnet_mapping {
+    subnet_id            = aws_subnet.external_az2.id
+    private_ipv4_address = aws_network_interface.bigip_external_az2.private_ips.id
 
   tags = {
     Name  = "${var.prefix}-gwlb"
     #Owner = var.resourceOwner
   }
 }
-
+}
 resource "aws_lb_target_group" "sslo_tg" {
   name        = "${var.prefix}-tg"
   port        = 6081
   protocol    = "GENEVE"
-  target_type = "instance"
+  target_type = "ip"
   vpc_id      = aws_vpc.security_vpc.id
 
   health_check {
