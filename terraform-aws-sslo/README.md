@@ -176,3 +176,5 @@ Add GWLB EPs subnets in app vpc
 Remove internal interface from BIGIP
 Remove internal routes
 Remove Transit Gateway
+
+Route Table : Edge association to the VPC route table(sslo-rt_vpc2_application_azX), add IGW

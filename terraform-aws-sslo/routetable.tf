@@ -87,14 +87,14 @@ resource "aws_route_table" "rt_vpc2_application_az2" {
 
 #route table associations
 
-resource "aws_main_route_table_association" "rt_vpc2_application_az1" {
-  vpc_id         = aws_vpc.app_vpc.id
+resource "aws_route_table_association" "rt_vpc2_application_az1" {
+  #vpc_id         = aws_vpc.app_vpc.id
   gateway_id     = aws_internet_gateway.sslo_app_igw.id
   route_table_id = aws_route_table.rt_vpc2_application_az1.id
 }
 
-resource "aws_main_route_table_association" "rt_vpc2_application_az2" {
-  vpc_id         = aws_vpc.app_vpc.id
+resource "aws_route_table_association" "rt_vpc2_application_az2" {
+  #vpc_id         = aws_vpc.app_vpc.id
   gateway_id     = aws_internet_gateway.sslo_app_igw.id
   route_table_id = aws_route_table.rt_vpc2_application_az2.id
 }
