@@ -1,6 +1,7 @@
 resource "local_file" "ansible_vars" {
   content  = <<-DOC
-     ansible_host: ${aws_instance.sslo_az1.public_ip}
+     ansible_host_f51: ${aws_instance.sslo_az1.public_ip}
+     ansible_host_f52: ${aws_instance.sslo_az2.public_ip}
      ansible_httpapi_password: "${var.admin_password}"
      snort1_host: ${aws_network_interface.inspection_device_1_dmz1_az1.private_ip}
      snort2_host: ${aws_network_interface.inspection_device_2_dmz3_az2.private_ip}
