@@ -126,7 +126,7 @@ resource "aws_instance" "inspection_device_1_az2" {
   availability_zone = var.az2
   user_data = file("f5_onboard_az2.sh")
   tags = {
-    Name = "${var.prefix}-vm_inspection_device_2_az1"
+    Name = "${var.prefix}-vm_inspection_device_1_az2"
   }  
   network_interface {
     network_interface_id = aws_network_interface.inspection_device_1_mgmt_az2.id
