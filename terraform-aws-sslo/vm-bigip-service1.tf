@@ -111,9 +111,9 @@ resource "aws_network_interface" "inspection_device_1_dmz2_az2" {
 resource "aws_eip" "inspection_device_1_management_az2" {
   vpc               = true
   public_ipv4_pool  = "amazon"
-  network_interface = aws_network_interface.bigip_management_az2.id
+  network_interface = aws_network_interface.inspection_device_1_mgmt_az2.id
   tags = {
-    Name = "${var.prefix}-eip_bigip_management_az2"
+    Name = "${var.prefix}-eip_inspection_device_1_management_az2"
   }
 }
 
