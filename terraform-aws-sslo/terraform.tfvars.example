@@ -64,4 +64,4 @@ sslo_pkg_name = "f5-iappslx-ssl-orchestrator-15.1.0-7.5.2.noarch.rpm"
 
 
 # 'admin' user password for BIG-IP
-admin_password = "f5Twister!"
+admin_password = "example_password"
