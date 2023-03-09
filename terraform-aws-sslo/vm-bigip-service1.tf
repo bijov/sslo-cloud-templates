@@ -45,16 +45,16 @@ resource "aws_eip" "inspection_device_1_eip_az1" {
 }
 
 ## Inspection Device 1 
- resource "aws_instance" "inspection_device_1_az1" {
+resource "aws_instance" "inspection_device_1_az1" {
   depends_on        = [aws_eip.inspection_device_1_eip_az1, aws_route_table_association.management_az1]
   ami               = var.sslo_ami
   instance_type     = var.instance_type
   key_name          = aws_key_pair.my_keypair_az1.key_name
   availability_zone = var.az1
-  user_data = file("f5_onboard_az1.sh")
+  user_data         = file("f5_onboard_az1.sh")
   tags = {
     Name = "${var.prefix}-vm_inspection_device_1_az1"
-  } 
+  }
   network_interface {
     network_interface_id = aws_network_interface.inspection_device_1_mgmt_az1.id
     device_index         = 0
@@ -124,10 +124,10 @@ resource "aws_instance" "inspection_device_1_az2" {
   instance_type     = var.instance_type
   key_name          = aws_key_pair.my_keypair_az2.key_name
   availability_zone = var.az2
-  user_data = file("f5_onboard_az2.sh")
+  user_data         = file("f5_onboard_az2.sh")
   tags = {
     Name = "${var.prefix}-vm_inspection_device_1_az2"
-  }  
+  }
   network_interface {
     network_interface_id = aws_network_interface.inspection_device_1_mgmt_az2.id
     device_index         = 0

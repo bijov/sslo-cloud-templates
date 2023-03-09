@@ -198,7 +198,7 @@ resource "aws_instance" "sslo_az1" {
   instance_type     = var.instance_type
   key_name          = aws_key_pair.my_keypair_az1.key_name
   availability_zone = var.az1
-  user_data = file("f5_onboard_az1.sh")
+  user_data         = file("f5_onboard_az1.sh")
   tags = {
     Name = "${var.prefix}-vm_bigip_sslo_az1"
   }
@@ -242,7 +242,7 @@ resource "aws_instance" "sslo_az2" {
   instance_type     = var.instance_type
   key_name          = aws_key_pair.my_keypair_az2.key_name
   availability_zone = var.az2
-  user_data = file("f5_onboard_az2.sh")
+  user_data         = file("f5_onboard_az2.sh")
   tags = {
     Name = "${var.prefix}-vm_bigip_sslo_az2"
   }

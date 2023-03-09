@@ -24,7 +24,7 @@ mgmt_src_addr_prefixes = ["0.0.0.0/0"]
 
 # AWS location
 region = "us-east-1"
-az     = "us-east-1a"
+#az     = "us-east-1a"
 
 # VPC subnets
 vpc_cidrs = {
@@ -53,7 +53,7 @@ vpc_cidrs = {
 
 
 # BIG-IP Virtual Server IP Address for Inbound Layer 3 Topology demo
-app_vip = "10.0.2.200"
+# app_vip = "10.0.2.200"
 
 # BIG-IP VM instance type
 instance_type = "m5.4xlarge"

@@ -16,7 +16,7 @@ resource "aws_lb" "sslo_gwlb" {
   subnets            = [aws_subnet.external_az1.id, aws_subnet.external_az2.id]
 
   tags = {
-    Name  = "${var.prefix}-gwlb"
+    Name = "${var.prefix}-gwlb"
     #Owner = var.resourceOwner
   }
 }
@@ -46,7 +46,7 @@ resource "aws_vpc_endpoint_service" "sslo_gwlb_eps" {
   acceptance_required        = false
   gateway_load_balancer_arns = [aws_lb.sslo_gwlb.arn]
   tags = {
-    Name  = "${var.prefix}-security_vpc_eps"
+    Name = "${var.prefix}-security_vpc_eps"
   }
 }
 
@@ -66,7 +66,7 @@ resource "aws_vpc_endpoint" "sslo_gwlb_ep_az1" {
   vpc_endpoint_type = "GatewayLoadBalancer"
   vpc_id            = aws_vpc.app_vpc.id
   tags = {
-    Name  = "${var.prefix}-ep_app_vpc_az1"
+    Name = "${var.prefix}-ep_app_vpc_az1"
   }
 }
 
@@ -77,6 +77,6 @@ resource "aws_vpc_endpoint" "sslo_gwlb_ep_az2" {
   vpc_endpoint_type = "GatewayLoadBalancer"
   vpc_id            = aws_vpc.app_vpc.id
   tags = {
-    Name  = "${var.prefix}-ep_app_vpc_az2"
+    Name = "${var.prefix}-ep_app_vpc_az2"
   }
 }

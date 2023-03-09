@@ -64,11 +64,11 @@ resource "aws_route_table_association" "gwlbe_vpc2_az2" {
 resource "aws_route_table" "rt_vpc2_application" {
   vpc_id = aws_vpc.app_vpc.id
   route {
-    cidr_block = var.vpc_cidrs["application_az1"]
+    cidr_block      = var.vpc_cidrs["application_az1"]
     vpc_endpoint_id = aws_vpc_endpoint.sslo_gwlb_ep_az1.id
   }
   route {
-    cidr_block = var.vpc_cidrs["application_az2"]
+    cidr_block      = var.vpc_cidrs["application_az2"]
     vpc_endpoint_id = aws_vpc_endpoint.sslo_gwlb_ep_az2.id
   }
   tags = {
@@ -89,8 +89,8 @@ resource "aws_route_table_association" "rt_vpc2_application" {
 resource "aws_route_table" "application_az1" {
   vpc_id = aws_vpc.app_vpc.id
   route {
-    cidr_block         = "0.0.0.0/0"
-    vpc_endpoint_id    = aws_vpc_endpoint.sslo_gwlb_ep_az1.id
+    cidr_block      = "0.0.0.0/0"
+    vpc_endpoint_id = aws_vpc_endpoint.sslo_gwlb_ep_az1.id
   }
   tags = {
     Name = "${var.prefix}-rt_application_az1"
@@ -100,8 +100,8 @@ resource "aws_route_table" "application_az1" {
 resource "aws_route_table" "application_az2" {
   vpc_id = aws_vpc.app_vpc.id
   route {
-    cidr_block         = "0.0.0.0/0"
-    vpc_endpoint_id    = aws_vpc_endpoint.sslo_gwlb_ep_az2.id
+    cidr_block      = "0.0.0.0/0"
+    vpc_endpoint_id = aws_vpc_endpoint.sslo_gwlb_ep_az2.id
   }
   tags = {
     Name = "${var.prefix}-rt_application_az2"
